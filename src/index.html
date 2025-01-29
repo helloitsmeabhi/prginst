@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        Prog-Tools
+    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./assets/css/bootstrap-icons.css"/>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        #searchButton {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        #searchButton:hover {
+            transform: scale(0.9);
+            background-color: #0056b3 !important;
+        }
+        
+    </style>
+    <style>
+      
+      .content {
+          display: none; /* Initially hide all content */
+      }
+      .card-blur {
+                background-color: rgba(255, 255, 255, 0.5);
+                backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+            }
+      .card-blur:hover {
+                background-color: rgba(255, 255, 255, 0.7);
+                transform: translateY(-5px);
+      }
+    </style>
+</head>
+
+<body>
+  
+    <div class="spinner" id="spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar" style="position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-size: large;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" onclick="showContent('main')">
+          <img src="./assets/images/p.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top" style="border-radius: 20px; backdrop-filter: blur(10px);">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#" onclick="showContent('home')">Home</a>
+            <a class="nav-link" href="#" onclick="showContent('languages')">Languages</a>
+            <a class="nav-link" href="#" onclick="showContent('ide')">IDE's</a>
+            <a class="nav-link" href="#" onclick="showContent('databases')">Databases</a>
+            <a class="nav-link" href="#" onclick="showContent('framework')">Frameworks</a>
+            <a class="nav-link" href="#" onclick="showContent('about')">About</a>
+          </div>
+          <!-- Control Buttons -->
+          <div class="ms-auto d-flex align-items-center">
+            <button type="button" class="btn btn-primary me-2" id="minBtn" title="Minimize" style="background-color: rgba(0, 0, 0, 0.132);backdrop-filter: blur(10px);">
+              <i class="bi bi-dash-lg"></i> <!-- Minimize Icon -->
+            </button>
+            <button type="button" class="btn btn-primary me-2" id="maxBtn" title="Maximize/Restore" style="background-color: rgba(0, 0, 0, 0.132);backdrop-filter: blur(10px);">
+              <i class="bi bi-square"></i> <!-- Maximize Icon -->
+            </button>
+            <button type="button" class="btn btn-danger" id="closeBtn" title="Close" style="background-color: rgba(0, 0, 0, 0.132);backdrop-filter: blur(10px);">
+              <i class="bi bi-x-lg"></i> <!-- Close Icon -->
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <div id="mainContent" class="content" style="display: block;">
+      <!-- Hero Section -->
+     
+    <section class="hero-section">
+      <div class="container">
+          <h1>Welcome to Programming Tools Installer</h1>
+          <p>Your one-stop solution for installing essential programming tools.</p>
+          <a href="#cta" class="btn btn-light btn-lg" onclick="showContent('home')">Get Started</a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+          <h2 class="text-center mb-5" style="color: white;">Features</h2>
+          <div class="row">
+              <!-- Feature 1 -->
+              <div class="col-md-4 feature-item">
+                  <i class="bi bi-image-fill"></i>
+                  <h4>Easy Installation</h4>
+                  <p>Get all the programming tools you need with a simple click. Save time and effort.</p>
+                  <div class="feature-logo">
+                      <!-- Add your logo here -->
+                      <img src="./assets/images/install.png" alt="install" class="img-fluid" style="max-width: 140px;">
+                  </div>
+              </div>
+
+              <!-- Feature 2 -->
+              <div class="col-md-4 feature-item">
+                  <i class="bi bi-cloud-upload-fill"></i>
+                  <h4>Supports Multiple Languages</h4>
+                  <p>Install compilers, interpreters, and IDEs for languages like Python, Java, C++, JavaScript, and more.</p>
+                  <br>
+                  <div class="feature-logo">
+                      <!-- Add your logo here -->
+                      <img src="./assets/images/program.png" alt="language" class="img-fluid" style="max-width: 100px;">
+                  </div>
+              </div>
+
+              <!-- Feature 3 -->
+              <div class="col-md-4 feature-item">
+                  <i class="bi bi-bootstrap"></i>
+                  <h4>Frequent Updates</h4>
+                  <p>Stay up-to-date with the latest versions of your tools. Automatic updates are included!</p>
+                  <div class="feature-logo">
+                      <!-- Add your logo here -->
+                      <img src="./assets/images/automation.png" alt="automate" class="img-fluid" style="max-width: 150px;">
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+
+        <!-- Call to Action Section -->
+        <section class="cta-section" id="cta">
+            <div class="container">
+              <h2>Ready to Start?</h2>
+              <p>Download the installer now and get started with the best programming tools.</p>
+              <button type="button" class="btn btn-primary btn-lg" id="run-command">Download Installer</button>
+            </div>
+            
+        </section>
+
+
+
+      </div>
+      <div id="homeContent" class="content" style="padding-top: 12px;">
+        <div class="py-5">
+          
+        
+        <section class="hero-section" style="background-color: rgba(0, 45, 243, 0.412);">
+            <h1>Programming Tools Installer</h1>
+            <p>Get the latest development tools for your projects.</p>
+        </section>
+        
+        <div class="container">
+            <!-- Essential Tools Section -->
+                <!-- Search Bar Section -->
+                <section id="search" class="my-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="d-flex bg-white rounded-pill shadow-sm overflow-hidden">
+                                <input type="text" 
+                                       id="searchInput"
+                                       class="form-control border-0 px-4 py-2 flex-grow-1" 
+                                       placeholder="Search tools..."
+                                       aria-label="Search tools">
+                                <div class="d-flex align-items-center px-3 bg-primary rounded-pill cursor-pointer" 
+                                     id="searchButton"
+                                     style="margin-left: -5rem">
+                                    <i class="fas fa-search text-white"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Search results container -->
+                            <div id="searchResults" class="mt-3 d-none">
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <div class="list-group list-group-flush">
+                                            <!-- Results will be dynamically inserted here -->
+                                        </div>
+                                        <div class="text-end mt-2">
+                                            <small class="text-muted">Results powered by Scoop.com</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+        </div>
+        
+        </div>
+      </div>
+      <div id="languagesContent" class="content" style="padding-top: 15px;">
+        <div class="py-5">
+          <div class="container">
+              <h1 class="text-center mb-4">Languages</h1>
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark language-btn" id="python">
+                              <img src="./assets/images/languages/python.png" class="card-img-top rounded-3 p-3" alt="Python" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Python</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark language-btn" id="java">
+                              <img src="./assets/images/languages/java.png" class="card-img-top rounded-3 p-3" alt="Java" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Java</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark language-btn" id="cppc">
+                              <img src="./assets/images/languages/cpp.png" class="card-img-top rounded-3 p-3" alt="C++" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">C++</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark language-btn" id="node">
+                              <img src="./assets/images/languages/node.png" class="card-img-top rounded-3 p-3" alt="Node.js" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Node.js</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark language-btn" id="cs">
+                              <img src="./assets/images/languages/csharp.png" class="card-img-top rounded-3 p-3" alt="C#" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">C#</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark language-btn" id="go">
+                              <img src="./assets/images/languages/go.png" class="card-img-top rounded-3 p-3" alt="Go" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Go</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div id="ideContent" class="content" style="padding-top: 15px;">
+        <div class="py-5">
+          <div class="container">
+              <h1 class="text-center mb-4">Development Tools</h1>
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark" id="vsc">
+                              <img src="./assets/images/ides/vscode.png" class="card-img-top rounded-3 p-3" alt="Visual Studio Code" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Visual Studio Code</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark" id="eclipse">
+                              <img src="./assets/images/ides/eclipse.png" class="card-img-top rounded-3 p-3" alt="Eclipse" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Eclipse</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark" id="pycharm">
+                              <img src="./assets/images/ides/pycharm.png" class="card-img-top rounded-3 p-3" alt="PyCharm" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">PyCharm</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark" id="arduino">
+                              <img src="./assets/images/ides/arduino.png" class="card-img-top rounded-3 p-3" alt="Arduino" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Arduino</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark" id="vs">
+                              <img src="./assets/images/ides/vs.png" class="card-img-top rounded-3 p-3" alt="Visual Studio" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Visual Studio</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                          <button type="button" class="btn h-100 text-dark" id="android">
+                              <img src="./assets/images/ides/android.png" class="card-img-top rounded-3 p-3" alt="Android Studio" style="object-fit: contain; height: 200px;">
+                              <div class="card-body">
+                                  <h5 class="card-title">Android Studio</h5>
+                              </div>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+      <div id="databasesContent" class="content" style="padding-top: 15px;">
+        <div class="py-5">
+          <div class="container">
+            <h1 class="text-center mb-4">Databases</h1>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="mysql">
+                            <img src="./assets/images/databases/mysql.png" class="card-img-top rounded-3 p-3" alt="MySQL" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">MySQL</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="mongo">
+                            <img src="./assets/images/databases/mongo.png" class="card-img-top rounded-3 p-3" alt="MongoDB" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">MongoDB</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="postgre">
+                            <img src="./assets/images/databases/postgresql.png" class="card-img-top rounded-3 p-3" alt="PostgreSQL" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">PostgreSQL</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="maria">
+                            <img src="./assets/images/databases/maria.png" class="card-img-top rounded-3 p-3" alt="MariaDB" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">MariaDB</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="fire">
+                            <img src="./assets/images/databases/firebase.png" class="card-img-top rounded-3 p-3" alt="Firebase" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Firebase</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="nosql">
+                            <img src="./assets/images/databases/nosql.png" class="card-img-top rounded-3 p-3" alt="NoSQL" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">NoSQL</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+      <div id="frameworkContent" class="content" style="padding-top: 15px;">
+        <div class="py-5">
+          <div class="container">
+            <h1 class="text-center mb-4">Frameworks</h1>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="django">
+                            <img src="https://static.djangoproject.com/img/logos/django-logo-negative.png" class="card-img-top rounded-3 p-3" alt="Django" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Django</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="dotnet">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg" class="card-img-top rounded-3 p-3" alt=".NET" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">.NET</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="react">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" class="card-img-top rounded-3 p-3" alt="React" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">React</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="electronjs">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Electron_Software_Framework_Logo.svg" class="card-img-top rounded-3 p-3" alt="Electron" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Electron</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="spring">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Spring_Boot.svg/768px-Spring_Boot.svg.png" class="card-img-top rounded-3 p-3" alt="Spring" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Spring</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                        <button type="button" class="btn h-100 text-dark" id="flask">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/690px-Flask_logo.svg.png" class="card-img-top rounded-3 p-3" alt="Flask" style="object-fit: contain; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Flask</h5>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+      <div id="aboutContent" class="content" style="padding-top: 15px;">
+        <div class="py-5">
+          <div class="container">
+            <h1 class="text-center mb-4">About Me</h1>
+            <div class="row">
+              <div class="col-md-6">
+                <img src="./assets/images/p.png" class="img-fluid rounded-3" alt="About Me" style="object-fit: contain;">
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100 card-blur border-0 rounded-3 overflow-hidden">
+                <div class="card-body">
+                <h2>Who I Am</h2>
+                <p>I am a developer who created this tool to help other developers get started with their projects. My goal is to provide a simple and efficient way to install the essential tools needed for programming.</p>
+                <h2>Why Choose This Tool?</h2>
+                <p>This installer is designed to save you time and effort by automating the installation process. You can get all the tools you need with just a few clicks. I also provide regular updates to ensure you have the latest versions of your tools.</p>
+                <h2>Connect With Me</h2>
+                <ul class="list-unstyled" >
+                  <li><a href="https://github.com/helloitsmeabhi" target="_blank" style="text-decoration: none;"><i class="fab fa-github"></i> GitHub</a></li>
+                  <li><a href="https://www.linkedin.com/in/abhinav-naik-6520592b4/" target="_blank" style="text-decoration: none;"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                  <li><a href="mailto:helloitsmeabhinav2003@gmail.com" style="text-decoration: none;"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
+                <h2>Technologies Used</h2>
+                <ul>
+                  <li>DeepSeek</li>
+                  <li>HTML, CSS, JavaScript</li>
+                  <li>Bootstrap (for styling)</li>
+                  <li>Scoop API</li>
+                  <li>Electron JS</li>
+                  <li>Git (for version control)</li>
+                </ul>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="./renderer.js"></script>
+    <script src="./assets/js/scripts.js"></script>
+   
+</body>
+
+</html>
