@@ -67,5 +67,6 @@ The following tools and environments are supported for version checking and inst
 1. If the app doesn't work as expected, make sure your system has the required tools installed and accessible via the command line.
 2. If you're using Windows, ensure that PowerShell is enabled and configured to execute scripts. You can adjust the execution policy
    by running the following command in PowerShell (as administrator):
+   
     ```bash
     Set-ExecutionPolicy RemoteSigned
